@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suhyun Kim</title>
+  <meta name="description" content="Suhyun Kim — M.S. student, NLP Lab, Jeonbuk National University. LLM-as-a-Judge, rubric-based reward modeling.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1c2128;
+      --muted: #6b7280;
+      --rule: #e5e7eb;
+      --accent: #47a6ff;
+      --accent-tint: #e4ebf1;
+      --serif: "Newsreader", Georgia, "Times New Roman", "Apple SD Gothic Neo", "Noto Serif KR", serif;
+      --sans: "IBM Plex Sans", -apple-system, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: #fcfcfc; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 24px 80px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      padding-bottom: 40px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .photo {
+      flex: 0 0 auto;
+      width: 120px;
+      height: 150px;
+      background: var(--accent-tint);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    h1 {
+      margin: 4px 0 2px;
+      font-size: 2.4rem;
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    h1 .ko {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 0.6em;
+      margin-left: 0.4em;
+      vertical-align: 0.12em;
+    }
+    .role {
+      margin: 8px 0 0;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Sections: label column + content column */
+    section {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 0 32px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    section:last-of-type { border-bottom: 0; }
+    h2 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .content > :first-child { margin-top: 0; }
+    .content > :last-child { margin-bottom: 0; }
+    p { margin: 0 0 1em; max-width: 60ch; }
+
+    /* Research interests: the two keywords are the emphasis of the page */
+    .interests { list-style: none; margin: 0; padding: 0; }
+    .interests li + li { margin-top: 20px; }
+    .interests .kw {
+      display: block;
+      font-size: 1.55rem;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--accent);
+    }
+    .interests .desc {
+      display: block;
+      margin-top: 4px;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* Timeline-style lists (education, publications) */
+    .entries { list-style: none; margin: 0; padding: 0; }
+    .entries li + li { margin-top: 18px; }
+    .entries .when {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .entries .what { display: block; }
+    .entries .sub {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .pub { max-width: 62ch; }
+    .pub .me { font-weight: 500; }
+    .pub .venue { font-style: italic; }
+    .pub .note {
+      display: block;
+      margin-top: 4px;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* Contact */
+    .contact { list-style: none; margin: 0; padding: 0; font-family: var(--sans); font-size: 0.95rem; }
+    .contact li + li { margin-top: 6px; }
+    .contact .label { display: inline-block; min-width: 4.5em; color: var(--muted); }
+
+    footer {
+      margin-top: 48px;
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 640px) {
+      body { font-size: 17px; }
+      main { padding: 40px 20px 64px; }
+      header { gap: 20px; }
+      .photo { width: 96px; height: 120px; }
+      h1 { font-size: 1.9rem; }
+      section { grid-template-columns: 1fr; gap: 10px 0; padding: 26px 0; }
+      .interests .kw { font-size: 1.35rem; }
+    }
+  </style>
+</head>
+<body>
+<main>
+
+  <header>
+    <div class="photo">
+      <img src="photo.jpeg" alt="Suhyun Kim" onerror="this.style.display='none'">
+    </div>
+    <div>
+      <h1>Suhyun Kim<span class="ko">김수현</span></h1>
+      <p class="role">
+        M.S. student, NLP Lab<br>
+        Department of Electronic and Information Engineering, Jeonbuk National University
+      </p>
+    </div>
+  </header>
+
+  <section>
+    <h2>About</h2>
+    <div class="content">
+      <p>I am a first-year master's student in the NLP Lab at Jeonbuk National University, advised by Prof. Hyun-Je Song.</p>
+      <p>I am interested in how large language models are evaluated with rubrics, and in using such rubric-based judgments as reward signals for training models on open-ended generation tasks.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Research interests</h2>
+    <div class="content">
+      <ul class="interests">
+        <li>
+          <span class="kw">LLM-as-a-Judge</span>
+          <span class="desc">Rubric-based evaluation of open-ended LLM outputs</span>
+        </li>
+        <li>
+          <span class="kw">Rubric-based Reward Modeling</span>
+          <span class="desc">Rubrics as reward signals in reinforcement learning for LLMs</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="content">
+      <ul class="entries">
+        <li>
+          <span class="when">Mar. 2026 – present</span>
+          <span class="what">M.S. student, Department of Electronic and Information Engineering, Jeonbuk National University</span>
+          <span class="sub">NLP Lab, advised by Prof. Hyun-Je Song</span>
+        </li>
+        <li>
+          <span class="when">Feb. 2026</span>
+          <span class="what">B.S., Department of Artificial Intelligence Convergence, Wonkwang University</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Publications</h2>
+    <div class="content">
+      <ul class="entries">
+        <li class="pub">
+          Keunwoo Kim, Taehyeon Jeong, <span class="me">Suhyun Kim</span>, Jin Yu, and Kyoungsoo Bok.
+          &ldquo;Alert Service by Identifying Disaster Locations in Urban Environments.&rdquo;
+          <span class="venue">Smart Media Journal</span>, vol. 15, no. 4, pp. 139–146, Apr. 2026. (in Korean)
+          <span class="note"><a href="https://doi.org/10.30693/SMJ.2026.15.4.139">doi:10.30693/SMJ.2026.15.4.139</a></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <div class="content">
+      <ul class="contact">
+        <li><span class="label">Email</span> <a href="mailto:sunn1estmay@gmail.com">sunn1estmay@gmail.com</a></li>
+        <li><span class="label"></span> <a href="mailto:sunn1estmay@jbnu.ac.kr">sunn1estmay@jbnu.ac.kr</a></li>
+        <li><span class="label">GitHub</span> <a href="https://github.com/inZOEmyLIFE">github.com/inZOEmyLIFE</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>Last updated September 2026.</footer>
+
+</main>
+</body>
+</html>
